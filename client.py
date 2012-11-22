@@ -1,3 +1,22 @@
+# -*- coding: utf-8 -*-
+
+"""
+    eve-demo-client
+    ~~~~~~~~~~~~~~~
+
+    Simple and quickly hacked togheter, this script is used to reset the
+    eve-demo API to its initial state. It will use standard API calls to:
+
+        1) delete all items in the 'people' and 'works' collections
+        2) post multiple items in both collection
+
+    I guess it can also serve as a basic example of how to programmatically
+    manage a remot e API using the phenomenal Requests library by Kenneth Reitz
+    (a very basic 'get' function is included even if not used).
+
+    :copyright: (c) 2012 by Nicola Iarocci.
+    :license: BSD, see LICENSE for more details.
+"""
 import requests
 import json
 import random
@@ -50,6 +69,9 @@ def post_people():
         payload[person['lastname']] = json.dumps(person)
 
     r = perform_post('people', payload)
+    print "'people' posted"
+    print r.status_code
+    print r.json
 
     valids = []
     if r.status_code == 200:
@@ -71,23 +93,29 @@ def post_works(ids):
                 'title': '%s Book Title' % titles[i],
                 'description': '%s description' % titles[i],
                 'owner': random.choice(ids),
-                #'contributors':  random.sample(ids, random.randint(1, 5))
             }
         )
 
     payload = {}
     for i in range(len(works)):
-        payload['work' + str(i+1)] = json.dumps(works[i])
+        payload['work' + str(i + 1)] = json.dumps(works[i])
     r = perform_post('works', payload)
+    print "'works' posted"
+    print r.status_code
     print r.json
+
 
 def perform_post(resource, data):
     return requests.post(endpoint(resource), data)
 
 
 def delete():
-    perform_delete('people')
-    perform_delete('works')
+    r = perform_delete('people')
+    print "'people' deleted"
+    print r.status_code
+    r = perform_delete('works')
+    print "'works' deleted"
+    print r.status_code
 
 
 def perform_delete(resource):
@@ -100,6 +128,7 @@ def endpoint(resource):
 
 def get():
     r = requests.get('http://eve-demo.herokuapp.com')
+    print r.json
 
 if __name__ == '__main__':
     delete()
