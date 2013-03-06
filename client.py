@@ -21,8 +21,8 @@ import requests
 import json
 import random
 
-#ENTRY_POINT = 'http://eve-demo.herokuapp.com'
-ENTRY_POINT = 'http://localhost:5000'
+ENTRY_POINT = 'http://eve-demo.herokuapp.com'
+#ENTRY_POINT = 'http://localhost:5000'
 
 
 def post_people():
@@ -75,7 +75,7 @@ def post_people():
 
     valids = []
     if r.status_code == 200:
-        response = r.json['response']
+        response = r.json()
         for person in payload:
             result = response[person]
             if result['status'] == "OK":
