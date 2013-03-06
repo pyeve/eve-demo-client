@@ -85,13 +85,12 @@ def post_people():
 
 
 def post_works(ids):
-    titles = ['First', 'Second', 'Third', 'Fourth', 'Fifth']
     works = []
-    for i in range(5):
+    for i in range(28):
         works.append(
             {
-                'title': '%s Book Title' % titles[i],
-                'description': '%s description' % titles[i],
+                'title': 'Book Title #%d' % i,
+                'description': 'Description #%d' % i,
                 'owner': random.choice(ids),
             }
         )
