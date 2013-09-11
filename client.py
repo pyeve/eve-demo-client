@@ -32,35 +32,35 @@ def post_people():
             'lastname': 'Doe',
             'role': ['author'],
             'location': {'address': '422 South Gay Street', 'city': 'Auburn'},
-            'born': 'Thu, 27 Aug 1970 14:37:13 UTC'
+            'born': 'Thu, 27 Aug 1970 14:37:13 GMT'
         },
         {
             'firstname': 'Serena',
             'lastname': 'Love',
             'role': ['author'],
             'location': {'address': '363 Brannan St', 'city': 'San Francisco'},
-            'born': 'Wed, 25 Feb 1987 17:00:00 UTC'
+            'born': 'Wed, 25 Feb 1987 17:00:00 GMT'
         },
         {
             'firstname': 'Mark',
             'lastname': 'Green',
             'role': ['copy', 'author'],
             'location': {'address': '4925 Lacross Road', 'city': 'New York'},
-            'born': 'Sat, 23 Feb 1985 12:00:00 UTC'
+            'born': 'Sat, 23 Feb 1985 12:00:00 GMT'
         },
         {
             'firstname': 'Julia',
             'lastname': 'Red',
             'role': ['copy'],
             'location': {'address': '98 Yatch Road', 'city': 'San Francisco'},
-            'born': 'Sun, 20 Jul 1980 11:00:00 UTC'
+            'born': 'Sun, 20 Jul 1980 11:00:00 GMT'
         },
         {
             'firstname': 'Anne',
             'lastname': 'White',
             'role': ['contributor', 'copy'],
             'location': {'address': '32 Joseph Street', 'city': 'Ashfield'},
-            'born': 'Fri, 25 Sep 1970 10:00:00 UTC'
+            'born': 'Fri, 25 Sep 1970 10:00:00 GMT'
         },
     ]
 
@@ -76,6 +76,7 @@ def post_people():
     valids = []
     if r.status_code == 200:
         response = r.json()
+        print response
         for person in payload:
             result = response[person]
             if result['status'] == "OK":
