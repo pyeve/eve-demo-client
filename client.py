@@ -69,14 +69,11 @@ def post_people():
         payload[person['lastname']] = json.dumps(person)
 
     r = perform_post('people', payload)
-    print "'people' posted"
-    print r.status_code
-    print r.json
+    print "'people' posted", r.status_code
 
     valids = []
     if r.status_code == 200:
         response = r.json()
-        print response
         for person in payload:
             result = response[person]
             if result['status'] == "OK":
@@ -100,9 +97,7 @@ def post_works(ids):
     for i in range(len(works)):
         payload['work' + str(i + 1)] = json.dumps(works[i])
     r = perform_post('works', payload)
-    print "'works' posted"
-    print r.status_code
-    print r.json
+    print "'works' posted", r.status_code
 
 
 def perform_post(resource, data):
@@ -111,11 +106,9 @@ def perform_post(resource, data):
 
 def delete():
     r = perform_delete('people')
-    print "'people' deleted"
-    print r.status_code
+    print "'people' deleted", r.status_code
     r = perform_delete('works')
-    print "'works' deleted"
-    print r.status_code
+    print "'works' deleted", r.status_code
 
 
 def perform_delete(resource):
