@@ -68,10 +68,10 @@ def post_people():
     print "'people' posted", r.status_code
 
     valids = []
-    if r.status_code == 200:
+    if r.status_code == 201:
         response = r.json()
         for person in response:
-            if person['status'] == "OK":
+            if person['_status'] == "OK":
                 valids.append(person['_id'])
 
     return valids
