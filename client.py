@@ -22,7 +22,6 @@ import json
 import random
 
 ENTRY_POINT = 'http://eve-demo.herokuapp.com'
-#ENTRY_POINT = 'http://localhost:5000'
 
 
 def post_people():
@@ -70,9 +69,10 @@ def post_people():
     valids = []
     if r.status_code == 201:
         response = r.json()
-        for person in response:
-            if person['_status'] == "OK":
-                valids.append(person['_id'])
+        if response['_status'] == 'OK':
+            for person in response['_items']:
+                if person['_status'] == "OK":
+                    valids.append(person['_id'])
 
     return valids
 
@@ -120,4 +120,3 @@ if __name__ == '__main__':
     delete()
     ids = post_people()
     post_works(ids)
-    #get()
