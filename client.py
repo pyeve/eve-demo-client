@@ -14,7 +14,7 @@
     manage a remot e API using the phenomenal Requests library by Kenneth Reitz
     (a very basic 'get' function is included even if not used).
 
-    :copyright: (c) 2012 by Nicola Iarocci.
+    :copyright: (c) 2015 by Nicola Iarocci.
     :license: BSD, see LICENSE for more details.
 """
 import requests
