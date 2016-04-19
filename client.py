@@ -17,11 +17,14 @@
     :copyright: (c) 2015 by Nicola Iarocci.
     :license: BSD, see LICENSE for more details.
 """
-import requests
+import sys
+
 import json
 import random
+import requests
 
-ENTRY_POINT = 'http://eve-demo.herokuapp.com'
+
+ENTRY_POINT = 'eve-demo.herokuapp.com'
 
 
 def post_people():
@@ -109,12 +112,9 @@ def perform_delete(resource):
 
 
 def endpoint(resource):
-    return '%s/%s/' % (ENTRY_POINT, resource)
+    return 'http://%s/%s/' % (
+        ENTRY_POINT if not sys.argv[1:] else sys.argv[1], resource)
 
-
-def get():
-    r = requests.get('http://eve-demo.herokuapp.com')
-    print r.json
 
 if __name__ == '__main__':
     delete()
