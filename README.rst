@@ -1,7 +1,7 @@
 Eve Demo Client
 ===============
 
-Simple and quickly hacked togheter, this script is used to reset the `Eve-Demo
+Simple and quickly hacked together, this script is used to reset the `Eve-Demo
 <https://github.com/nicolaiarocci/eve-demo>`_ REST API to its inital state.
 
 It will use standard API calls to:
